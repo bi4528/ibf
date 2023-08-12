@@ -1,0 +1,8 @@
+name = "ibf"
+uuid = "387f0604-24c7-409c-bc6e-c53cd9147838"
+authors = ["Bojan Ilić <bi4528@student.uni-lj.si>"]
+version = "0.1.0"
+
+[deps]
+Interpolations = "a98d9a8b-a2ab-59e6-89dd-64a1c18fca59"
+Polynomials = "f27b6e38-b328-58d1-80ce-0feddd5e7a45"
