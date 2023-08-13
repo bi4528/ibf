@@ -29,7 +29,7 @@ function doloci_stopnjo_polinoma(f, a, b, n, x_interp)
         end
     end
 
-    return n_b
+    return n_b-1
 end
 
 # Primer uporabe za funkcijo e^(-x^2) na [-1, 1]
