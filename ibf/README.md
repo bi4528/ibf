@@ -28,7 +28,7 @@ Funkcija `interpolate_function(f, a, b, n, x_interp)` omogoča interpolacijo fun
 
 ### Določanje stopnje polinoma
 
-Funkcija `doloci_stopnjo_polinoma(f, a, b, n, x_interp)` določi stopnjo interpolacijskega polinoma za funkcijo `f` na intervalu [a, b]. Parametri so enaki kot pri funkciji `interpolate_function`. V njej najprej z zviševanjem začetnega parametra `n` grobo ocenimo vrednost, da je stopnja polinoma takšna, da je napaka $10^(-6)$, potem pa z biskecijo med to vrednostjo in predhodno vrednostjo `n`-ja dobimo natačno stopnjo polinoma, ki je `n-1`.
+Funkcija `doloci_stopnjo_polinoma(f, a, b, n, x_interp)` določi stopnjo interpolacijskega polinoma za funkcijo `f` na intervalu [a, b]. Parametri so enaki kot pri funkciji `interpolate_function`. V njej najprej z zviševanjem začetnega parametra `n` grobo ocenimo vrednost, da je stopnja polinoma takšna, da je napaka $10^{-6}$, potem pa z biskecijo med to vrednostjo in predhodno vrednostjo `n`-ja dobimo natačno stopnjo polinoma, ki je `n-1`.
 
 ### Rezultati i testiranje
 
