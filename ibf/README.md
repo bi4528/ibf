@@ -40,11 +40,11 @@ Za raziskavo interpolacijskih polinomov smo uporabili različne funkcije in meto
 
 Stopnja interpolacijskega polinoma za funkcijo e^(-x^2) na [-1, 1] je 889123.
 
-#### Funkcija sin(x)/x na intervalu [-1, 1]
+#### Funkcija sin(x)/x na intervalu [0, 10]
 
 Stopnja interpolacijskega polinoma za funkcijo sin(x)/x na [0, 10]: 780856. Ta funkcija ima divergenčno vrednost v točki `0` in zaradi tega vrednost pred preizkusom definirana kot `1`.
 
-### Funkcija |x^2-2x| na [1, 3]
+#### Funkcija |x^2-2x| na intervalu [1, 3]
 Stopnja interpolacijskega polinoma za funkcijo |x^2-2x| na [1, 3]: 2687499. 
 Ta funkcija je ostra v točki `2` in okoli nje je bilo potrebno uporabiti več točk, kjer želimo izračunati interpolirane vrednosti za preverjanje interpolacije, da bi dosegli izračun stopnje interpolacije.
 
