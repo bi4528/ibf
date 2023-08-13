@@ -1,44 +1,22 @@
 using ibf, Polynomials
-using Interpolations
-
-# Določite točke za interpolacijo
-#x = [1.0, 2.0, 3.0, 4.0]
-#y = [2.0, 5.0, 4.0, 8.0]
-
-# Ustvarite interpolacijski polinom
-#interp = interpolate((x,), y, Gridded(Linear()))
-
-# Izračunajte vrednosti interpolacijskega polinoma v določenih točkah
-#x_interp = [1.5, 2.5, 3.5]
-#y_interp = interp[x_interp]
-
-#println("Interpolated values: ", y_interp)
-
-# Primer uporabe za funkcijo e^(-x^2) na [-1, 1]
-f1(x) = exp(-x^2)
-a1, b1 = -1.0, 1.0
-n = 1000
-n_interp1 = 30
-#x_interp = range(a1, stop=b1, length=n_interp1)
-#interpolant1 = ibf.interpolate_function(f1, a1, b1, n, x_interp)
-#y_interp = f1.(x_interp)
-#println("Interpolant for e^(-x^2): ", interpolant1)
-#println("y_interp for e^(-x^2): ", y_interp)
 
 tol = 1e-6
 
-function doloci_stopnjo_polinoma(f, a, b, n, n_interp)
-    x_interp = range(a1, stop=b1, length=n_interp)
+function doloci_stopnjo_polinoma(f, a, b, n, x_interp)
     y_interp = f.(x_interp)
     interpolant = ibf.interpolate_function(f, a, b, n, x_interp)
     faktor = 10
     n_prev = n
+
+    #Doličiti zgornjo mejo za bisekcijo
     while any(abs.(interpolant - y_interp) .> tol)
         n_prev = n
         n *= faktor
         interpolant = ibf.interpolate_function(f, a, b, n, x_interp)
+        #println(interpolant)
     end
 
+    #Bisekcija
     n_a = n_prev
     n_b = n
     while n_a < n_b-1
@@ -54,15 +32,38 @@ function doloci_stopnjo_polinoma(f, a, b, n, n_interp)
     return n_b
 end
 
-doloci_stopnjo_polinoma(f1, a1, b1, n, n_interp1)
+# Primer uporabe za funkcijo e^(-x^2) na [-1, 1]
+f1(x) = exp(-x^2)
+a1, b1 = -1.0, 1.0
+n = 10^3
+n_interp = 30
+x_interp = range(a1, stop=b1, length=n_interp)
+stopnja = doloci_stopnjo_polinoma(f1, a1, b1, n, x_interp)
+println("Stopnja interpolacijskega polinoma za funkcijo e^(-x^2) na [-1, 1]: ", stopnja)
 
 # Primer uporabe za funkcijo sin(x)/x na [0, 10]
-f2(x) = sin(x)/x
+function f2(x)
+    if x == 0
+        return 1.0 # zaradi divergnečne vrednosti
+    else
+        return sin(x) / x
+    end
+end
 a2, b2 = 0.0, 10.0
-doloci_stopnjo_polinoma(f2, a2, b2, n, n_interp1)
+n = 10
+n_interp = 30
+x_interp = range(a2, stop=b2, length=n_interp)
+stopnja = doloci_stopnjo_polinoma(f2, a2, b2, n, x_interp)
+println("Stopnja interpolacijskega polinoma za funkcijo sin(x)/x na [0, 10]: ", stopnja)
 
-# Primer uporabe za funkcijo sin(x)/x na [1, 3]
+# Primer uporabe za funkcijo |x^2-2x| na [1, 3]
 f3(x) = abs(x^2 - 2x)
-n = 10^6
+n = 10^3
 a3, b3 = 1.0, 3.0
-doloci_stopnjo_polinoma(f3, a3, b3, n, n_interp1)
+c3, d3 = 1.80, 2.20
+x_interp1 = range(a3, stop=c3, length=5)
+x_interp2 = range(c3, stop=d3, length=20)
+x_interp3 = range(d3, stop=b3, length=5)
+x_interp_combined = vcat(x_interp1, x_interp2, x_interp3)
+stopnja = doloci_stopnjo_polinoma(f3, a3, b3, n, x_interp_combined)
+println("Stopnja interpolacijskega polinoma za funkcijo |x^2-2x| na [1, 3]: ", stopnja)

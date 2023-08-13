@@ -1,10 +1,8 @@
 module ibf
 
-using Polynomials
-
-# Funkcija za izračun Čebiševih točk na intervalu [a, b]
-function chebyshev_points(n, a, b)
-    points = [(cos((2*i - 1) * π / (2*n)) + 1) * 0.5 * (b - a) + a for i in 1:n]
+# Funkcija za izračun Čebiševih točk na intervalu [-1, 1]
+function chebyshev_points(n)
+    points = [cos(i * π / n) for i in 1:n]
     return points
 end
 
@@ -32,7 +30,7 @@ end
 # Funkcija za izračun interpolanta na poljubnem intervalu [a, b]
 function interpolate_function(f, a, b, n, x_interp)
     # Preslikava intervala na [-1, 1]
-    x_cheb = chebyshev_points(n, -1.0, 1.0)
+    x_cheb = chebyshev_points(n)
     x_mapped = [(a + b) / 2 + ((b - a) / 2) * x for x in x_cheb]
     y_mapped = [f(x) for x in x_mapped]
     
