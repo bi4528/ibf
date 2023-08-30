@@ -32,7 +32,7 @@ Funkcija `doloci_stopnjo_polinoma(f, a, b, n, x_interp)` določi stopnjo interpo
 
 ### Rezultati i testiranje
 
-Vse implementacije metod so testirane s primerjanjem vrednosti interpolacije in dejanske vrednosti funkcije v neki točki, razen metode `doloci_stopnjo_polnioma`, ki jo težko testirati, saj zunanje knjižnice na drugačen način računajo stopnje polinoma.
+Implementacija metod je testirana s primerjanjem vrednosti interpolacije in dejanske vrednosti funkcije v neki točki, razen metode `doloci_stopnjo_polinoma`, ki jo težko testirati, saj zunanje knjižnice na drugačen način računajo stopnje polinoma.
 
 Za raziskavo interpolacijskih polinomov smo uporabili različne funkcije in metode. V naslednjih primerih smo preizkusili 3 različne funkcije in določili ustrezno stopnjo interpolacijskega polinoma na osnovi števila točk interpolacije. Preverjanje interpolacijskega polnima smo preizkusili na 30 točkah zaradi časovne zahtevnosti.
 
